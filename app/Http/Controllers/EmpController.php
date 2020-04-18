@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Emp,App\Dept;
-use Auth,Hash;
+use Auth,Hash,DB,Response;
 
 class EmpController extends Controller
 {
@@ -41,20 +41,20 @@ class EmpController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
+        //dd($data);
 
-        $this->validate($request,[
+        /*$this->validate($request,[
             'name'=>'required',
             'email'=>'required|unique:emp,email',
             'password'=>'required',
-            'workno'=>'required|unique:emp,workno',
             'dept_id'=>'required',
-        ]);
+        ]);*/
 
         $data['password']=Hash::make($data['password']);
 
-        Emp::create($data);
+        $result=Emp::create($data);
 
-        return redirect()->route('emp.index');
+        return  $result ? '1' : '0';
     }
 
     /**
@@ -94,7 +94,7 @@ class EmpController extends Controller
 
         $data=$request->all();
 
-        // dd($data);
+        //dd($data);
 
         if(isset($data['password']) && !empty($data['password'])){
             $data['password']=Hash::make($data['password']);
@@ -102,18 +102,21 @@ class EmpController extends Controller
             unset($data['password']);
         }
 
-        
+        //dd($da8ta);
 
-        $this->validate($request,[
+        /*$this->validate($request,[
             'name'=>'required',
             'email'=>'required|unique:emp,email,'.$id,
             'workno'=>'required|unique:emp,workno,'.$id,
             'dept_id'=>'required',
-        ]);
+            'username'=>'required',
+            'phone'=>'required',
 
-        $emp->update($data);
+        ]);*/
 
-        return redirect()->route('emp.index');
+        $result = $emp->update($data);
+        return  $result ? '1' : '0';
+        //return redirect()->route('emp.index');
     }
 
     /**
@@ -124,9 +127,25 @@ class EmpController extends Controller
      */
     public function destroy($id)
     {
+        $emp=Emp::findOrFail($id);
+
+        $emp->delete();
         return response()->json([
             'error'=>1,
             'msg'=>'员工不能删除'
         ]);
     }
+
+    public function aajax($str){
+        //获取到ajax传来的需要删除的id
+        //dd($str);
+        //把传来的所有id改为数组形式  explode  字符串转数组
+        $str = explode(",",$str);
+        //利用循环将需要删除的id 一个一个进行执行sql；
+        foreach($str as $v){
+            Emp::where('id','=',$v)->delete();
+        }
+
+    }
+ 
 }

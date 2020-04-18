@@ -1,0 +1,149 @@
+/**
+* 分页CSS代码，源自bootstrap
+* mail@ruyicms.com
+* 如意内容管理系统 RUYICMS
+* 颜色 pagination-info,pagination-success,pagination-success,pagination-warning,pagi*nation-danger; 大小pagination-sm，pagination-lg
+*
+*/
+
+.pagination {
+	display: -ms-flexbox;
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: 0.25rem;
+}
+
+.page-link {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.75rem;
+	margin-left: -1px;
+	line-height: 1.25;
+	color: #565c5e;
+	border: 1px solid #ededf3;
+	background-color: #ededf3;
+	border-color: #f5f5fa;
+}
+
+.page-link:hover {
+	z-index: 2;
+	color: #0056b3;
+	text-decoration: none;
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
+
+.page-link:focus {
+	z-index: 2;
+	outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.page-item:first-child .page-link {
+	margin-left: 0;
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+	color: #6c757d;
+	pointer-events: none;
+	cursor: auto;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+
+.pagination-lg .page-link {
+	padding: 0.75rem 1.5rem;
+	font-size: 1.25rem;
+	line-height: 1.5;
+}
+
+.pagination-lg .page-item:first-child .page-link {
+	border-top-left-radius: 0.3rem;
+	border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+	border-top-right-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+.pagination-sm .page-item:first-child .page-link {
+	border-top-left-radius: 0.2rem;
+	border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+	border-top-right-radius: 0.2rem;
+	border-bottom-right-radius: 0.2rem;
+}
+
+.pagination-rose>li.active a,
+.pagination-rose>li.active a:hover,
+.pagination-rose>li.active a:focus,
+.pagination-rose>li.active span,
+.pagination-rose>li.active span:hover,
+.pagination-rose>li.active span:focus {
+	background-color: #fa2d9a !important;
+	border-color: #fa2d9a;
+}
+
+.pagination-info>li.active a,
+.pagination-info>li.active a:hover,
+.pagination-info>li.active a:focus,
+.pagination-info>li.active span,
+.pagination-info>li.active span:hover,
+.pagination-info>li.active span:focus {
+	background-color: #00bcd4 !important;
+	border-color: #00bcd4;
+}
+
+.pagination-success>li.active a,
+.pagination-success>li.active a:hover,
+.pagination-success>li.active a:focus,
+.pagination-success>li.active span,
+.pagination-success>li.active span:hover,
+.pagination-success>li.active span:focus {
+	background-color: #4caf50 !important;
+	border-color: #4caf50;
+}
+
+.pagination-warning>li.active a,
+.pagination-warning>li.active a:hover,
+.pagination-warning>li.active a:focus,
+.pagination-warning>li.active span,
+.pagination-warning>li.active span:hover,
+.pagination-warning>li.active span:focus {
+	background-color: #ff9800 !important;
+	border-color: #ff9800;
+}
+
+.pagination-danger>li.active a,
+.pagination-danger>li.active a:hover,
+.pagination-danger>li.active a:focus,
+.pagination-danger>li.active span,
+.pagination-danger>li.active span:hover,
+.pagination-danger>li.active span:focus {
+	background-color: #f44336 !important;
+	border-color: #f44336;
+}

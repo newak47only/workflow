@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'PRC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-
+        Mews\Captcha\CaptchaServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,6 +233,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Workflow'=>Workflow\Facades\Workflow::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Input' =>  Illuminate\Support\Facades\Input::class,
     ],
 
 ];

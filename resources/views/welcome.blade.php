@@ -1,95 +1,67 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿@extends('layouts.app')
+@section('content')
+<body>
+	<div class="wap-container">
+		<article class="Hui-admin-content clearfix">
+			<div class="row-24 clearfix" style="margin-left: -12px; margin-right: -12px;">
+				<div class="col-24-xs-24 col-24-sm-12 col-24-md-12 col-24-lg-12 col-24-xl-6" style="padding-left: 12px; padding-right: 12px; margin-bottom: 24px;" >
+					<div class="panel" >
+						<div class="panel-header" style="padding:15px 24px;font-weight: 400;color:#999;">在库项目总数：</div>
+						<div class="panel-body" style="padding:0 24px;">
+							<div class="c-primary text-c mt-10" style="font-size: 36px;line-height: 38px;padding-bottom: 24px; ">
+								{{$info_count}}
+							</div>
+							<div class="f-14" style="padding: 10px 0;border-top:solid 1px #eee"><span class="c-999">今日入库项目</span> <span>{{$info_new_count}}个</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-24-xs-24 col-24-sm-12 col-24-md-12 col-24-lg-12 col-24-xl-6" style="padding-left: 12px; padding-right: 12px; margin-bottom: 24px;">
+					<div class="panel">
+						<div class="panel-header" style="padding:15px 24px;font-weight: 400;color:#999;">洽谈项目总数：</div>
+						<div class="panel-body" style="padding:0 24px;">
+							<div class="c-success text-c mt-10" style="font-size: 36px;line-height: 38px;padding-bottom: 24px;">
+								{{$info_nego_count}}
+							</div>
+							<div class="f-14" style="padding: 10px 0;border-top:solid 1px #eee"><span class="c-999">进度记录总共</span> <span>{{$recode_count}}条</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-24-xs-24 col-24-sm-12 col-24-md-12 col-24-lg-12 col-24-xl-6" style="padding-left: 12px; padding-right: 12px; margin-bottom: 24px;">
+					<div class="panel">
+						<div class="panel-header" style="padding:15px 24px;font-weight: 400;color:#999;">流转项目总数：</div>
+						<div class="panel-body" style="padding:0 24px;">
+							<div class="c-danger text-c mt-10" style="font-size: 36px;line-height: 38px;padding-bottom: 24px;">
+								{{$info_cir_count}}
+							</div>
+							<div class="f-14" style="padding: 10px 0;border-top:solid 1px #eee"><span class="c-999">您的流转项目</span> <span>12个</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-24-xs-24 col-24-sm-12 col-24-md-12 col-24-lg-12 col-24-xl-6" style="padding-left: 12px; padding-right: 12px; margin-bottom: 24px;">
+					<div class="panel">
+						<div class="panel-header" style="padding:15px 24px;font-weight: 400;color:#999;">落地项目总数：</div>
+						<div class="panel-body" style="padding:0 24px;">
+							<div class="c-warning text-c mt-10" style="font-size: 36px;line-height: 38px;padding-bottom: 24px;">
+								{{$info_land_count}}
+							</div>
+							<div class="f-14" style="padding: 10px 0;border-top:solid 1px #eee"><span class="c-999">今日新增</span> <span>1,234</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-secondary">
+				<div class="panel-header">宁波市重大招商项目信息库（流转平台）使用说明</div>
+				<div class="panel-body">面板内容</div>
+			</div>
+			
+		</article>
+		
+	</div>
+	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/layer/3.1.1/layer.js"></script>
+	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="static/business/js/main.js"></script>
+</body>
+@endsection

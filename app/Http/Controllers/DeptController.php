@@ -29,7 +29,7 @@ class DeptController extends Controller
     {
         $depts=Dept::recursion(Dept::orderBy('rank','ASC')->get());
         $emps=Emp::orderBy('id','DESC')->get();
-        return view('dept.create')->with(compact('depts','emps'));
+        return view('dept.add')->with(compact('depts','emps'));
     }
 
     /**
@@ -71,8 +71,13 @@ class DeptController extends Controller
     public function edit($id)
     {
         $dept=Dept::findOrFail($id);
+        //dd($dept);
+
         $emps=Emp::orderBy('id','DESC')->get();
+         //dd($emps);
+
         $depts=Dept::recursion(Dept::orderBy('rank','ASC')->get());
+        //dd($depts);
         return view('dept.edit')->with(compact('dept','emps','depts'));
     }
 
@@ -93,9 +98,8 @@ class DeptController extends Controller
             'dept_name'=>'required'
         ]);
 
-        $dept->update($data);
-
-        return redirect()->route('dept.index');
+        $result = $dept->update($data);
+        return  $result ? '1' : '0';
     }
 
     /**
@@ -109,24 +113,17 @@ class DeptController extends Controller
         $dept=Dept::findOrFail($id);
 
         if(Dept::where('pid',$dept->id)->first()){
-            return response()->json([
-                'error'=>1,
-                'msg'=>'该部门含有子部门，不能删除'
-            ]);
+            $result = '2';
+            return $result;
         }
 
         if(Emp::where('dept_id',$dept->id)->first()){
-            return response()->json([
-                'error'=>1,
-                'msg'=>'该部门含有员工，不能删除'
-            ]);
+            $result = '3';
+            return $result;
         }
 
-        $dept->delete();
+        $result = $dept->delete();
 
-        return response()->json([
-            'error'=>0,
-            'msg'=>'部门删除成功'
-        ]);
+        return $result ? '1':'0';
     }
 }

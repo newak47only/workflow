@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Entry,App\Proc,App\Flowlink,App\ProcessVar,App\Flow,App\EntryData,App\Emp;
+use App\dept,App\Information,App\Emp,App\Negotiation,App\Recode;
 
 use Auth,DB;
+
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -16,28 +18,63 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        //我的申请
-        $entries=Entry::with(["emp","procs"=>function($query){
-            $query->orderBy("id",'DESC')->take(1);
-        },"process"])->where(['emp_id'=>Auth::id(),'pid'=>0])->orderBy('id','DESC')->get();
+        $admin = Auth::user();
+        $dept = Dept::where('id',$admin->dept_id)->firstOrFail();
+        $dept_name = $dept->dept_name;
+        //dd($dept->director_id);
+        if($admin->dept_id == '6'){
+            $status = 0;
 
-        // dd($entries);
+
+        }elseif ($admin->id == $dept->director_id && $dept->id != '6') {
+            $status = 1;
+ 
+        }else{
+            $status =2;
+
+        }
+        //dd($status);
+        return view('index')->with(compact('status','dept_name'));
+
+    }
+
+    public function welcome()
+    {
         
-        //我的待办
-        $procs=Proc::with(["emp","entry"=>function($query){
-            $query->with("emp");
-        }])->where(['emp_id'=>Auth::id(),'status'=>0])->orderBy("is_read","ASC")->orderBy("status","ASC")->orderBy("id","DESC")->get();
+        $admin_id=Auth::user()->id;
+        $info_count = Information::where('emp_id', $admin_id)->count();
+        //dd($info_count);
+        $nego_count = Information::where([
+            ['emp_id','=',$admin_id],
+            ['process','=','0'],
 
-        //工作流 分组TODO
-        $flows=Flow::where(['is_publish'=>1,'is_show'=>1])->orderBy('id','ASC')->get();
-        $handle_procs=Proc::with(["emp","entry"=>function($query){
-            $query->with("emp");
-        }])->where(['emp_id'=>Auth::id()])->where('status','!=',0)->orderBy('entry_id','DESC')->orderBy("id","ASC")->get()->groupBy('entry_id');
+        ])->count();
+        $cir_count = Negotiation::where([
+            ['director_id','=',$admin_id],
+            ['actiontype','=','5'],
+            ['result','=','0'],
+        ])->count();
+        //dd($info_nego_count);
+        $info_nego_count = $nego_count+$cir_count;
+        //dd($info_nego_count);
+        $info_cir_count = Information::where('emp_id',$admin_id)->whereIn('process',[1,10])->count();
+        $info_land_count = Information::where([
+            ['emp_id','=',$admin_id],
+            ['process','>=','2'],
+        ])->count();
 
-        // dd($handle_procs);
+        $startTime = Carbon::now()->startOfDay();
+        $endTime = Carbon::now()->endOfDay();
+        //dd($endTime);
+        $info_new_count = Information::where('emp_id', $admin_id)->whereBetween('created_at',[$startTime,$endTime])->count();
+        $recode_count =Recode::where('emp_id', $admin_id)->count();
 
-        return view('home')->with(compact("entries","procs","flows","handle_procs"));
+
+        
+        return view('welcome')->with(compact('info_count','info_nego_count','info_cir_count','info_land_count','info_new_count','recode_count'));
+        //return view('welcome');
     }
 }

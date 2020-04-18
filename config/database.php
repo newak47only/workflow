@@ -52,6 +52,10 @@ return [
             'prefix' => '',
             'strict' => false,
             'engine' => null,
+            'options' => [
+                PDO::ATTR_PERSISTENT => false,
+                PDO::ATTR_TIMEOUT => 60 * 3,
+            ],
         ],
 
         'pgsql' => [
