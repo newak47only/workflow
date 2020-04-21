@@ -25,7 +25,7 @@
         				</tr>
         				<tr>
           					<th class="text-r">相关文件：</th>
-          					<td>{{$negotiation->contract_file}}</td>
+          					<td><a href="{{$negotiation->contract_file}}" >{{$negotiation->contract_file}}</a></td>
         				</tr>
         				<tr>
 

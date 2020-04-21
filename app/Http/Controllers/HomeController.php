@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\dept,App\Information,App\Emp,App\Negotiation,App\Recode;
+use App\Dept,App\Information,App\Emp,App\Negotiation,App\Recode;
 
 use Auth,DB;
 

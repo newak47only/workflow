@@ -92,7 +92,6 @@
 											<td>{{$v['updated_at']}}</td>
 											<td class="td-manage">
 												<button type="submit"  href="javascript:;" onclick="cricule_view('查看流转详情','/recode/{{$v['id']}}')"  class="btn btn-primary radius size-S">&nbsp;&nbsp;<i class="Hui-iconfont">&#xe6df;</i>&nbsp;&nbsp;查看流转记录&nbsp;&nbsp;&nbsp;</button>
-												<button type="submit"  href="javascript:;" onclick="information_show('申请流转','/circule/start_circule/{{$v['nego_id']}}')"  class="btn btn-primary radius size-S ml-10">&nbsp;&nbsp;<i class="Hui-iconfont">&#xe6df;</i>&nbsp;&nbsp;申请流转&nbsp;&nbsp;&nbsp;</button>
 												
 											</td>
 										</tr>

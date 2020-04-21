@@ -117,6 +117,15 @@
 				},
 			});
 		});
+
+		function information_show(title,url){
+  			var index = layer.open({
+    		type: 2,
+    		title: title,
+    		content: url,
+    		area: ['800px', '600px']
+			});
+		};
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
 </body>

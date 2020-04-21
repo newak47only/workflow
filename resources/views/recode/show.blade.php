@@ -7,7 +7,7 @@
 			<div class="panel ">
 				<div class="panel-body">
 					<div id="tab-system" class="HuiTab">
-						<div class="tabBar cl"><span>工作记录</span><span>操作记录</span></div>
+						<div class="tabBar cl"><span>工作记录</span><span>流转记录</span></div>
 							<div class="tabCon">
 								<div class="mt-20 clearfix">
 									<table class="table  table-hover">
@@ -29,7 +29,7 @@
 												<td>{{$k->mode}}</td>
 												<td>{{$k->elephant}}</td>
 												<td>{{$k->info->name}}</td>
-												<td><a><u style="cursor:pointer" class="text-primary" onClick="recode_content('查看洽谈内容','{{$k->content}}')" title="查看洽谈内容">{{str_limit($k->content,100,'....')}}</u></a></td>
+												<td><u style="cursor:pointer" class="text-primary" onClick="recode_content('查看洽谈内容','{{$k->content}}')" title="查看洽谈内容">{{str_limit($k->content,100,'....')}}</u></td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -62,7 +62,11 @@
 												<td>{{$m->eaction}}</td>
 												<td><a><u style="cursor:pointer" class="text-primary" onClick="recode_content('查看操作说明','{{$m->remark}}')" title="查看操作说明">{{str_limit($m->remark,20,'....')}}</u></a></td>
 												<td>{{$m->neg_at}}</td>
+												@if(empty($m->demp->username))
+												<td></td>
+												@else
 												<td>{{$m->demp->username}}</td>
+												@endif
 												<td>{{$m->daction}}</td>
 												<td><a><u style="cursor:pointer" class="text-primary" onClick="recode_content('查看操作说明','{{$m->report}}')" title="查看操作说明">{{str_limit($m->report,20,'....')}}</u></a></td>
 												@if($m->result == 1)

@@ -1,4 +1,4 @@
-<!--_meta 作为公共模版分离出去-->
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,11 +15,12 @@
   <![endif]-->
   <link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
   <link rel="stylesheet" type="text/css" href="/static/h-ui.admin.pro.iframe/css/h-ui.admin.pro.iframe.min.css" />
+  <link rel="stylesheet" type="text/css" href="/static/h-ui.admin.pro.iframe/css/H-ui.login.min.css" />
   <link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.9/iconfont.css" />
   <link rel="stylesheet" type="text/css" href="/static/h-ui.admin.pro.iframe/skin/default/skin.css" id="skin" />
   <link rel="stylesheet" type="text/css" href="/static/business/css/style.css" />
   <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css" />
-  <script src="{{ asset('js/app.js') }}"></script>
+  
   <script src="/vendor/toastr/build/toastr.min.js" type="text/javascript"></script>
   <!--[if IE 6]>
   <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>

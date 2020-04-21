@@ -142,6 +142,8 @@
     	formData:{
     		_token:"{{csrf_token()}}",
     		emp_id:"{{$informations->emp_id}}",
+    		actiontype:"{{$actiontype}}",
+    		info_id:"{{$informations->id}}",
     	},
 
         // 不压缩image
